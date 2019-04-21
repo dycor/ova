@@ -1,0 +1,51 @@
+version: '3.7'
+
+services:
+  db:
+    container_name: database
+    image: postgres
+    volumes:
+      - .docker/db:/var/lib/postgresql/data
+  ruby:
+    container_name: ruby-api
+    build:
+      context: .
+      dockerfile: .docker/ruby/Dockerfile
+    command: bundle exec rails s -p 3000 -b '0.0.0.0'
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./api:/webapp
+    labels:
+      - "traefik.frontend.rule=Host:api.myproject.test"
+      - "traefik.port=3000"
+    depends_on:
+          - db
+
+  front:
+    container_name: react-front
+    image: node:lts-alpine
+    working_dir: /home/myproject/front
+    volumes:
+      - ./front:/home/myproject/front
+    ports:
+      - "7000:3000"
+    labels:
+      - "traefik.frontend.rule=Host:myproject.test"
+      - "traefik.port=8080"
+    command: ["yarn", "start"]
+
+  traefik:
+    container_name: traefik
+    image: traefik:latest
+    command: --api --docker
+    ports:
+      - "80:80"
+      - "443:443"
+      - "18080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - ./.docker/traefik/traefik.toml:/etc/traefik/traefik.toml:ro
+    labels:
+      - "traefik.frontend.rule=Host:traefik.myproject.test"
+      - "traefik.port=7000"
