@@ -35,17 +35,17 @@ services:
       - "traefik.port=8080"
     command: ["yarn", "start"]
 
-  traefik:
-    container_name: traefik
-    image: traefik:latest
-    command: --api --docker
-    ports:
-      - "80:80"
-      - "443:443"
-      - "18080:8080"
-    volumes:
-      - /var/run/docker.sock:/var/run/docker.sock
-      - ./.docker/traefik/traefik.toml:/etc/traefik/traefik.toml:ro
-    labels:
-      - "traefik.frontend.rule=Host:traefik.myproject.test"
-      - "traefik.port=7000"
+#  traefik:
+#    container_name: traefik
+#    image: traefik:latest
+#    command: --api --docker
+#    ports:
+#      - "80:80"
+#      - "443:443"
+#      - "18080:8080"
+#    volumes:
+#      - /var/run/docker.sock:/var/run/docker.sock
+#      - ./.docker/traefik/traefik.toml:/etc/traefik/traefik.toml:ro
+#    labels:
+#      - "traefik.frontend.rule=Host:traefik.myproject.test"
+#      - "traefik.port=7000"
