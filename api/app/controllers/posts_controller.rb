@@ -11,13 +11,12 @@ class PostsController < ApplicationController
 
 	#GET /posts/id
 	def show
-
 		render json: @post
 	end
 
 	#POST /posts
 	def create
-		@post = Post.new(params.permit(:title, :content, :image, :tags, :createdAt, :updatedAt))
+		@post = Post.new(params.permit(:title, :content, :image, :tags))
 
 		if @post.save
 			render json: @post, status: :created, location: @post
@@ -29,7 +28,6 @@ class PostsController < ApplicationController
 
 	#PATH / PUT / posts/:id
 	def update
-
 		if @post.update(post_params)
 			render json: @post, status: :success
 		else
@@ -41,4 +39,13 @@ class PostsController < ApplicationController
 
 	def destroy
 		@post.destroy
+    end
+
+    def set_post
+		@post = Post.find(params[:id])
 	end
+
+    def post_params
+		params.permit(:title, :content, :image, :tags)
+	end
+end

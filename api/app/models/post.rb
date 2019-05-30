@@ -1,4 +1,4 @@
 class Post < ApplicationRecord
-	validates_presence_of :title, :content, :image, :tags, :createAt, :updatedAt
+	validates_presence_of :title, :content, :image, :tags
 
 end
