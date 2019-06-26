@@ -15,11 +15,18 @@ make run
 
 **Congrats ! Your app is running**
 
-Front : myproject.test (port = 7000)
+Front : http://localhost:7000 (port = 7000)
 
 Back : api.myproject.test (back = 3000)
 
+## Start the project
 
+```
+make install
+```
+```
+make run 
+```
 
 
 ## Others commands :

@@ -20,7 +20,7 @@ services:
       - "traefik.frontend.rule=Host:api.myproject.test"
       - "traefik.port=3000"
     depends_on:
-          - db
+      - db
 
   front:
     container_name: react-front
