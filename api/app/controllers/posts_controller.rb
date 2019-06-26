@@ -1,5 +1,5 @@
 class PostsController < ApplicationController
-
+  skip_before_action :authenticate_request, only: [:create, :update, :destroy]
 	before_action :set_post, only: [:show, :update, :destroy]
 
 	# GET /posts
@@ -16,7 +16,8 @@ class PostsController < ApplicationController
 
 	#POST /posts
 	def create
-		@post = Post.new(params.permit(:title, :content, :image, :tags))
+
+		@post = Post.new(post_params)
 
 		if @post.save
 			render json: @post, status: :created, location: @post
@@ -46,6 +47,6 @@ class PostsController < ApplicationController
 	end
 
     def post_params
-		params.permit(:title, :content, :image, :tags)
+		params.permit(:title, :content, :image)
 	end
 end

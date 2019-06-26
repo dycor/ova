@@ -4,8 +4,6 @@ class CreatePosts < ActiveRecord::Migration[5.2]
       t.string :title
       t.string :content
       t.text :image
-      t.string :tags
-
       t.timestamps
     end
   end
