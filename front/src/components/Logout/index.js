@@ -6,7 +6,6 @@ const Logout = (props) => {
 
   const onClick = () => {
     logout();
-    console.log('lll')
     props.history.push(`/`);
 
   };
