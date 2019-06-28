@@ -5,8 +5,6 @@ import { AuthContext } from "../Auth/AuthProvider";
 
 const NavBar = () => {
   let { user, logout } = useContext(AuthContext);
-  console.log('auth',user)
-
   return  (
     <BrowserRouter>
       <div>

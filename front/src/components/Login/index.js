@@ -7,9 +7,16 @@ const Login = (props) => {
   const [password,setPassword] = useState('');
   let [errors,setErrors] = useState({'email' : '','connection':''});
 
-  const handleSubmit = () => {
-    login();
-    props.history.push(`/`);
+  const handleSubmit = e => {
+    e.preventDefault();
+    login(email,password).then( response => {
+      if(response) {
+        props.history.push(`/`);
+      } else {
+        setErrors({connection: 'Invalid credentials'});
+      }
+    });
+
   };
 
   const handleChange = event => {
