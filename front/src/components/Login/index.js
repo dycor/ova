@@ -10,10 +10,11 @@ const Login = (props) => {
   const handleSubmit = e => {
     e.preventDefault();
     login(email,password).then( response => {
-      if(response) {
-        props.history.push(`/`);
+      if(response.error) {
+        setErrors({connection: response.error.user_authentication.join(' ')});
       } else {
-        setErrors({connection: 'Invalid credentials'});
+        props.history.push(`/`);
+
       }
     });
 

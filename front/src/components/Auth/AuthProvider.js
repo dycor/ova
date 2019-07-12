@@ -1,6 +1,6 @@
 import React, { createContext, Component } from "react";
 import decode  from 'jwt-decode';
-import loginApi from '../../api/authentication';
+import loginApi,{register} from '../../api/authentication';
 import actions from './actions';
 import publicActions from '../../helpers/public-actions';
 
@@ -18,20 +18,17 @@ class AuthProvider extends Component {
   }
 
   login = async (email, password) => {
-    var response;
-    try {
-      response  =  await loginApi({ email, password});
-    }catch (e) {
-      return false;
-    }
-
+    const response  =  await loginApi({ email, password});
     if(response.auth_token){
       const token = response.auth_token;
       sessionStorage.setItem('jwt', token);
       this.setState({user :decode(token)});
-      return true;
     }
-    return false
+    return response;
+  };
+
+  register = async (name,firstname,email, password,description) => {
+    return  await register({ name, firstname, email, password,description});
   };
 
   logout = () => {
