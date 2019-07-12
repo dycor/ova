@@ -5,7 +5,16 @@ const login = async (params = {}) => {
     const { data } = await axios.post('/authenticate', params);
     return data;
   } catch (e) {
-    return e;
+    return e.response.data;
+  }
+};
+
+export const register = async (params = {}) => {
+  try {
+    const { data } = await axios.post('/users', params);
+    return data;
+  } catch (e) {
+    return e.response.data;
   }
 };
 
