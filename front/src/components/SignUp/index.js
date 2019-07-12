@@ -14,7 +14,6 @@ const SignUp = props =>{
   const handleSubmit = event => {
     event.preventDefault();
     let err = [];
-    console.log(description);
 
     if (!email) {
       err.push('Invalid email');
