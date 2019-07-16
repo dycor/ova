@@ -1,6 +1,5 @@
 class PostsController < ApplicationController
-  skip_before_action :authenticate_request, only: [:create, :update, :destroy]
-	before_action :set_post, only: [:show, :update, :destroy]
+	before_action :set_post, :authenticate_request, only: [:show, :update, :destroy, :get_comments]
 
 	# GET /posts
 	def index
@@ -42,11 +41,17 @@ class PostsController < ApplicationController
 		@post.destroy
     end
 
+	# GET /posts/:id/comments
+	def get_comments
+		render json: @post.comments
+	end
+
+
     def set_post
 		@post = Post.find(params[:id])
 	end
 
     def post_params
-		params.permit(:title, :content, :image)
+		params.permit(:title, :content, :image, :tag_list)
 	end
 end
