@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	skip_before_action :authenticate_request, only: [:index, :show, :get_comments]
-	before_action :set_post, only: [:update, :destroy]
+	before_action :set_post, only: [:update, :destroy, :show, :get_comments]
 
 	# GET /posts
 	def index
@@ -53,6 +53,6 @@ class PostsController < ApplicationController
 	end
 
     def post_params
-		params.permit(:title, :content, :image, :tag_list)
+		params.permit(:title, :content, :image)
 	end
 end
