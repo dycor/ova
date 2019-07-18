@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :get_posts]
 
   # GET /users
   def index
@@ -25,6 +25,11 @@ class UsersController < ApplicationController
       render json: @user.errors, status: :bad_request #400
     end
   end
+
+  	# GET /users/:id/posts
+	def get_posts
+		render json: @user.posts
+	end
 
   def set_user
     @user = User.find(params[:id])
