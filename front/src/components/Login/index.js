@@ -37,16 +37,20 @@ const Login = (props) => {
 
   return (
     <form onSubmit={handleSubmit}>
-      <label>
-        Email:
-        <input id="email" type="email" value={email} onChange={handleChange} />
-        { errors.email ? <label>{errors.email}</label> : <></>}
-      </label>
-      <label>
-        Password:
-        <input id="password" type="password" value={password} onChange={handleChange} />
-      </label>
-      <input type="submit" value="Submit" />
+      <div className="field">
+        <label>
+          Email:
+        </label>
+        <input className="input" id="email" type="email" value={email} onChange={handleChange} />
+        { errors.email ? <label >{errors.email}</label> : <></>}
+      </div>
+      <div className="field">
+        <label>
+          Password:
+        </label>
+        <input className="input" id="password" type="password" value={password} onChange={handleChange} />
+      </div>
+      <input type="submit" value="Submit"  className="button"/>
       { errors.connection ? <label>{errors.connection}</label> : <></>}
     </form>
   );
