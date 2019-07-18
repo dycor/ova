@@ -1,31 +1,32 @@
-import React, { useContext }  from 'react';
+import React, { useContext,useState }  from 'react';
 import { BrowserRouter , Link } from "react-router-dom";
 import Router from '../Router';
 import { AuthContext } from "../Auth/AuthProvider";
 
 const NavBar = () => {
+  const [active,setActive] = useState('home');
+
   let { user, logout } = useContext(AuthContext);
   return  (
     <BrowserRouter>
       <div>
         <nav>
-          <ul>
+          <ul  className="menu-list">
             <li>
-              <Link to="/">Home</Link>
+              <Link className={active === 'home' ? 'is-active' : '' } onClick={() => setActive('home')} to="/">Home</Link>
             </li>
             <li><input /></li>
             {
               user ? <li><button onClick={() => logout()}>Logout</button> </li>:
                 <>
                   <li>
-                    <Link to="/login">Login</Link>
+                    <Link className={active === 'login' ? ' is-active' : '' } onClick={() => setActive('login')} to="/login">Login</Link>
                   </li>
                   <li>
-                    <Link to="/signup">Sign up</Link>
+                    <Link className={active === 'signup' ? ' is-active' : '' } onClick={() => setActive('signup')} to="/signup">Sign up</Link>
                   </li>
                 </>
             }
-
           </ul>
         </nav>
         <Router />
