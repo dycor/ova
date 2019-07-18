@@ -44,4 +44,13 @@ export const deletePost = async (id) => {
   }
 };
 
+export const searchPosts = async (query) => {
+  try {
+    const { data } = await axios.get(`/search?query=${query}`);
+    return data;
+  } catch (e) {
+    return e.response.data;
+  }
+};
+
 export default getPosts;
