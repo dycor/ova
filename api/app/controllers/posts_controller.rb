@@ -1,10 +1,17 @@
 class PostsController < ApplicationController
-	skip_before_action :authenticate_request, only: [:index, :show, :get_comments]
+	skip_before_action :authenticate_request, only: [:index, :show,:searchQuery, :get_comments]
 	before_action :set_post, only: [:update, :destroy, :show, :get_comments]
 
 	# GET /posts
 	def index
 		@posts = Post.page(params[:page]).per(params[:limit])
+
+		render json: @posts, status: :success #200
+	end
+
+	# GET /search
+	def searchQuery
+		@posts = Post.search(params[:query])
 
 		render json: @posts, status: :success #200
 	end
