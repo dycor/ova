@@ -118,7 +118,7 @@ const SignUp = props => {
                   <div class="field">
                     <label class="label">Description</label>
                     <div class="control">
-                      <textarea class="textarea" placeholder="Textarea" alue={description} onChange={e => setDescription(e.target.value)} maxLength={140} required={true}></textarea>
+                      <textarea class="textarea" placeholder="Textarea" value={description} onChange={e => setDescription(e.target.value)} maxLength={140} required={true}></textarea>
                     </div>
                   </div>
 
