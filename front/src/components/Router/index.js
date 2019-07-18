@@ -13,7 +13,6 @@ const Router = () => (
     <Route path="/" exact component={Articles} />
     <Route path="/login" exact component={Login} />
     <Route path="/signup" exact component={SignUp} />
-    <Route path="/signup" exact component={SignUp} />
     <Route path="/posts/:id" exact component={Article} />
   </>
   )
