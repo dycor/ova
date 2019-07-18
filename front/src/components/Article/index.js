@@ -16,16 +16,15 @@ const Article = ({ match }) => {
     if (!ref.current.mounted) {
       getPost(match.params.id).then(res => {
         setPost(res)
-
+        getUserFromPost(res.user_id).then(res =>setAuthor(res));
 
       });
-      getCommentsByPost(match.params.id).then(res => setComments(res));
-      getUserFromPost(match.params.id).then(res => setAuthor(res) || []);
+      getCommentsByPost(match.params.id).then(res => setComments(res) || []);
       ref.current.mounted = true;
     }
   });
 
-
+  console.log(author)
   const postComment = () => {
     addComment({name: user.firstname , message :newComment , post_id : match.params.id}).then(res => setComments([...comments,res]));
     setNewComment('')

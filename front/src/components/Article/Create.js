@@ -24,7 +24,7 @@ const Create = props => {
         const userId = user.user_id;
         console.log(userId);
         
-        addPost({title, content, userId}).then(response => {
+        addPost({title, content, user_id : userId}).then(response => {
         //console.log(Object.keys(response))
         if (response.id) {
           props.history.push(`/`);
