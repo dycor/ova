@@ -48,4 +48,3 @@ gem 'kaminari'
 gem 'jwt'
 gem 'simple_command'
 gem 'acts-as-taggable-on', '~> 6.0'
-

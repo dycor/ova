@@ -85,7 +85,7 @@ const SignUp = props =>{
       <div className="field">
         <textarea  className="textarea" required={true} rows={5} cols={35} value={description} onChange={e => setDescription(e.target.value)} maxLength={140}/>
       </div>
-      <input className="input" type="submit" value="S'inscrire" className="button" />
+      <input type="submit" value="S'inscrire" className="button" />
     </form>
   )
 
