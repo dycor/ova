@@ -18,7 +18,7 @@ const Router = () => (
     <Route path="/signup" exact component={SignUp} />
     <Route path="/posts/:id" exact component={Article} />
     <Route path="/myposts" exact component={MyPosts} />
-    <Route path="/posts/create" exact component={AddArticle} />
+    <Route path="/create" exact component={AddArticle} />
     <Route path="/search" exact component={Search} />
   </>
   )

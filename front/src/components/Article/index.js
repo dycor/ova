@@ -24,7 +24,6 @@ const Article = ({ match }) => {
     }
   });
 
-  console.log(author)
   const postComment = () => {
     addComment({name: user.firstname , message :newComment , post_id : match.params.id}).then(res => setComments([...comments,res]));
     setNewComment('')

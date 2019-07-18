@@ -37,7 +37,7 @@ const NavBar = () => {
                   {
                     user ?
                     <>
-                      <Link to="/posts/create">
+                      <Link to="/create">
                         <a class="button is-light">
                             New Article
                           </a>
