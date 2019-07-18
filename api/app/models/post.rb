@@ -1,5 +1,5 @@
 class Post < ApplicationRecord
-	validates_presence_of :title, :content, :image, :user_id
+	validates_presence_of :title, :content, :user_id
 	#acts_as_taggable
 	paginates_per 5
 
