@@ -32,7 +32,7 @@ const SignUp = props => {
     }
     setErrors(err);
     if (err.length === 0) {
-      register(lastname, firstname, email, password, description).then(response => {
+      register(lastname, firstname, lastname, email, password, description).then(response => {
         console.log(Object.keys(response))
         if (response.id) {
           props.history.push(`/`);
@@ -118,7 +118,7 @@ const SignUp = props => {
                   <div class="field">
                     <label class="label">Description</label>
                     <div class="control">
-                      <textarea class="textarea" placeholder="Textarea" alue={description} onChange={e => setDescription(e.target.value)} maxLength={140} required={true}></textarea>
+                      <textarea class="textarea" placeholder="Textarea" value={description} onChange={e => setDescription(e.target.value)} maxLength={140} required={true}></textarea>
                     </div>
                   </div>
 

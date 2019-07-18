@@ -27,8 +27,8 @@ class AuthProvider extends Component {
     return response;
   };
 
-  register = async (name,firstname,email, password,description) => {
-    return  await register({ name, firstname, email, password,description});
+  register = async (name,firstname, lastname, email, password,description) => {
+    return  await register({ name, firstname, lastname, email, password,description});
   };
 
   logout = () => {

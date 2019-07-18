@@ -12,7 +12,7 @@ const NavBar = () => {
       <div>
         <nav class="navbar is-primary" role="navigation" aria-label="main navigation">
           <div class="navbar-brand">
-            <a class="navbar-item" href="https://bulma.io">
+            <a class="navbar-item">
             <h1 class="title has-text-white">OVA</h1>
     </a>
 

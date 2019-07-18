@@ -28,9 +28,9 @@ const Article = ({ match }) => {
           <div class="media-content">
             <div class="content">
               <p>
-                <strong>{user.firstname}</strong> <a>@kirangemohit@gmail.com</a><br />
-                  <span class="has-text-grey">Self-taught, inspired to learn<br />
-                    <time datetime="2018-04-20">Apr 20</time> · 20 min read</span>
+                <strong>{user.name} {user.firstname} </strong> <a>@{user.email}</a><br />
+                  <span class="has-text-grey">{user.description}<br />
+                    <time datetime="2018-04-20">{post.created_at}</time> · 20 min read</span>
 							</p>
 						</div>
 					</div>
