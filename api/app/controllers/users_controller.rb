@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   skip_before_action :authenticate_request, only: [:create]
-  before_action :set_user, only: [:show]
+  before_action :set_user, only: [:show, :get_posts]
 
   # GET /users
   def index
@@ -26,13 +26,18 @@ class UsersController < ApplicationController
     end
   end
 
+  	# GET /users/:id/posts
+	def get_posts
+		render json: @user.posts
+	end
+
   def set_user
     @user = User.find(params[:id])
   end
 
 
   def user_params
-    params.permit(:name,:firstname,:email, :password,:description,:profileImage)
+    params.permit(:name,:firstname,:email, :password,:description)
   end
 
 end
