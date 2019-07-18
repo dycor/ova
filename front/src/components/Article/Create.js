@@ -6,10 +6,8 @@ import {AuthContext} from "../Auth/AuthProvider";
 const Create = props => {
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
-  const [userID, setUserID] = useState('');
   const [errors, setErrors] = useState([]);
-  let { createPost } = useContext(addPost);
-  let { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext); 
 
   const handleSubmit = event => {
     event.preventDefault();
@@ -21,14 +19,13 @@ const Create = props => {
     if (!content) {
       err.push('Invalid content');
     }
-    if (!userID) {
-      err.push('Invalid userID');
-    }
     setErrors(err);
     if (err.length === 0) {
-        setUserID(user.id)
-        createPost(title, content, userID).then(response => {
-        console.log(Object.keys(response))
+        const userId = user.user_id;
+        console.log(userId);
+        
+        addPost({title, content, userId}).then(response => {
+        //console.log(Object.keys(response))
         if (response.id) {
           props.history.push(`/`);
         } else {
@@ -63,10 +60,9 @@ const Create = props => {
                   <div class="field">
                     <div class="field">
                       <label class="label">Title</label>
-                      <div class="control has-icons-left has-icons-right">
-                        <input class="input" type="text" placeholder="John" value={title} name="firstname" onChange={e => setTitle(e.target.value)} required={true} />
+                      <div class="">
+                        <input class="input" type="text" placeholder="Title" value={title} name="title" onChange={e => setTitle(e.target.value)} required={true} />
                         <span class="icon is-small is-left">
-                          <i class="fas fa-user"></i>
                         </span>
                       </div>
                     </div>
@@ -74,13 +70,13 @@ const Create = props => {
                   <div class="field">
                     <label class="label">Content</label>
                     <div class="control">
-                      <textarea class="textarea" placeholder="Textarea" alue={content} onChange={e => setContent(e.target.value)} maxLength={140} required={true}></textarea>
+                      <textarea class="textarea" placeholder="Textarea" value={content} onChange={e => setContent(e.target.value)} maxLength={250} required={true}></textarea>
                     </div>
                   </div>
 
                   <div class="field">
                     <button type="Submit" class="button is-success">
-                      Login
+                      Submit
                     </button>
                   </div>
                   </div>
