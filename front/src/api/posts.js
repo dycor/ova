@@ -26,4 +26,22 @@ export const addPost = async (params = {}) => {
   }
 };
 
+export const myPosts = async (id) => {
+  try {
+    const { data } = await axios.get(`/users/${id}/posts`);
+    return data;
+  } catch (e) {
+    return e.response.data;
+  }
+};
+
+export const deletePost = async (id) => {
+  try {
+    const { data } = await axios.delete(`/posts/${id}`);
+    return data;
+  } catch (e) {
+    return e.response.data;
+  }
+};
+
 export default getPosts;
