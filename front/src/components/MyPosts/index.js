@@ -28,6 +28,7 @@ const MyPosts = () => {
           <p>{post.content}</p>
           <span>{post.created_at}</span>
           <Link to={`/posts/${post.id}`}>Voir </Link>
+          <Link to={`/modifyArticle/${post.id}`}>Modify</Link>
           <button className="button" onClick={ () => deleteUserPost(post.id)}>DELETE</button>
         </div>
       )}

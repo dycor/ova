@@ -17,6 +17,17 @@ export const getPost = async (id) => {
   }
 };
 
+export const setPost = async (id, params = {}) => {
+  try {
+    console.log(id);
+    console.log(params);
+    const { data } = await axios.put(`/posts/${id}`, params);
+    return data;
+  } catch (e) {
+    return e.response.data;
+  }
+}
+
 export const addPost = async (params = {}) => {
   try {
     const { data } = await axios.post('/posts', params);

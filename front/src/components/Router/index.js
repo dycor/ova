@@ -8,6 +8,7 @@ import Login from "../Login";
 import MyPosts from "../MyPosts";
 import Search from "../Search";
 import PrivateRoute from '../../helpers/private-route';
+import ModifyArticle from '../ModifyArticle';
 
 const Router = () => (
   <>
@@ -18,6 +19,7 @@ const Router = () => (
     <Route path="/posts/:id" exact component={Article} />
     <Route path="/myposts" exact component={MyPosts} />
     <Route path="/search" exact component={Search} />
+    <Route path="/modifyArticle/:id" exact component={ModifyArticle} />
   </>
   )
 ;
