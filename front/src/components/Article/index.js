@@ -1,22 +1,36 @@
-import React, { useEffect, useState, useRef } from 'react';
+import React, { useEffect, useState, useRef, useContext } from 'react';
 import { getPost } from "../../api/posts";
+import addComment,{ getCommentsByPost } from "../../api/comments";
 import { getUserFromPost } from '../../api/user';
+import {AuthContext} from "../Auth/AuthProvider";
 
 const Article = ({ match }) => {
   const [post, setPost] = useState('');
-  const [user, setUser] = useState('');
+  const [newComment, setNewComment] = useState('');
+  const [comments, setComments] = useState([]);
+  const [author, setAuthor] = useState('');
   const ref = useRef({ mounted: false });
+  const { user } = useContext(AuthContext);
 
   useEffect(() => {
     if (!ref.current.mounted) {
-      getPost(match.params.id).then(res => setPost(res));
-      getUserFromPost(match.params.id).then(res => setUser(res));
+      getPost(match.params.id).then(res => {
+        setPost(res)
+        getUserFromPost(res.user_id).then(res =>setAuthor(res));
+
+      });
+      getCommentsByPost(match.params.id).then(res => setComments(res) || []);
       ref.current.mounted = true;
     }
-    console.log(post)
-    console.log(user)
-
   });
+
+  console.log(author)
+  const postComment = () => {
+    addComment({name: user.firstname , message :newComment , post_id : match.params.id}).then(res => setComments([...comments,res]));
+    setNewComment('')
+  };
+
+
   return post ?
   <>
       <article class="media center" style={{paddingTop: '40px'}}>
@@ -28,8 +42,8 @@ const Article = ({ match }) => {
           <div class="media-content">
             <div class="content">
               <p>
-                <strong>{user.name} {user.firstname} </strong> <a>@{user.email}</a><br />
-                  <span class="has-text-grey">{user.description}<br />
+                <strong>{author.name} {author.firstname} </strong> <a>@{author.email}</a><br />
+                <span className="has-text-grey">{author.description}<br/>
                     <time datetime="2018-04-20">{post.created_at}</time> · 20 min read</span>
 							</p>
 						</div>
@@ -69,6 +83,19 @@ const Article = ({ match }) => {
 
             <div class="content is-medium">
               {post.content}
+            </div>
+            <div>
+              <div>
+                <textarea value={newComment} onChange={e => setNewComment(e.target.value)}/>
+                <button className="button"  onClick={() => postComment()}>Send </button>
+              </div>
+              <div>
+                {comments.map(comment =>
+                  <div className="card">
+                  <strong>{comment.name}</strong>
+                  <p>{comment.message}</p>
+                  </div>)}
+              </div>
             </div>
     </>
           :

@@ -36,9 +36,16 @@ const NavBar = () => {
                 <div class="buttons">
                   {
                     user ?
+                    <>
+                      <Link to="/posts/create">
+                        <a class="button is-light">
+                            New Article
+                          </a>
+                      </Link>
                       <a onClick={() => logout()} class="button is-light">
                         Logout
-                      </a> :
+                      </a>
+                      </> :
                       <>
                         <Link className={active === 'login' ? ' is-active' : ''} onClick={() => setActive('login')} to="/login">
                           <a class="button is-light">
